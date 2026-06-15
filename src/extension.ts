@@ -5,7 +5,6 @@ let manager: BudgetManager | undefined;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     manager = new BudgetManager(context);
-    await manager.initialize();
 
     context.subscriptions.push(
         vscode.commands.registerCommand('byokDeepSeekCredits.refresh', () => {
@@ -20,6 +19,8 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             }
         })
     );
+
+    await manager.initialize();
 }
 
 export function deactivate(): void {

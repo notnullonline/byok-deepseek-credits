@@ -37,9 +37,6 @@ async function main() {
 		outfile: 'dist/extension.js',
 		external: ['vscode'],
 		logLevel: 'silent',
-		footer: {
-			js: 'module.exports = { activate, deactivate };',
-		},
 		plugins: [
 			/* add to the end of plugins array */
 			esbuildProblemMatcherPlugin,
