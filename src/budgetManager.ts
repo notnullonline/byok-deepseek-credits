@@ -133,16 +133,16 @@ export class BudgetManager {
 
   private async fetchAndUpdate(entry: ProviderEntry): Promise<void> {
     const { provider, statusBarItem } = entry;
-    statusBarItem.text = `$(sync~spin) ${provider.displayName}`;
+    statusBarItem.text = `$(sync~spin) ${provider.displayName}:`;
     statusBarItem.tooltip = "Fetching balance…";
 
     const apiKey = await this.context.secrets.get(
       `${SECRET_KEY_PREFIX}${provider.id}`,
     );
     if (!apiKey) {
-      statusBarItem.text = `$(key) ${provider.displayName}`;
+      statusBarItem.text = `$(key) ${provider.displayName}:`;
       const tip = new vscode.MarkdownString(
-        `**${provider.displayName}**: API key not set.\n\nRun **BYOK DeepSeek Credits: Set API Key** to configure.`,
+        `**${provider.displayName}**: API key not set.\n\nRun **BYOK DeepSeek Credits: Set API Key** to configure.\n\n[Open billing page](${provider.billingUrl})`,
       );
       tip.isTrusted = true;
       statusBarItem.tooltip = tip;
@@ -155,17 +155,17 @@ export class BudgetManager {
         result.currency === "USD"
           ? `$${result.balance.toFixed(2)}`
           : `${result.balance.toFixed(2)} ${result.currency}`;
-      statusBarItem.text = `$(cloud) ${provider.displayName} ${balanceStr}`;
+      statusBarItem.text = `$(cloud) ${provider.displayName}: ${balanceStr}`;
       const tip = new vscode.MarkdownString(
-        `**${provider.displayName}**\nRemaining balance: **${balanceStr}**\n\nClick to open billing page.`,
+        `**${provider.displayName}**\nRemaining balance: **${balanceStr}**\n\nClick to refresh. [Open billing page](${provider.billingUrl})`,
       );
       tip.isTrusted = true;
       statusBarItem.tooltip = tip;
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      statusBarItem.text = `$(warning) ${provider.displayName}`;
+      statusBarItem.text = `$(warning) ${provider.displayName}:`;
       const tip = new vscode.MarkdownString(
-        `**${provider.displayName}**: ${msg}\n\nClick to open billing page.`,
+        `**${provider.displayName}**: ${msg}\n\nClick to retry. [Open billing page](${provider.billingUrl})`,
       );
       tip.isTrusted = true;
       statusBarItem.tooltip = tip;
@@ -178,11 +178,10 @@ export class BudgetManager {
       100,
     );
     item.command = {
-      command: "vscode.open",
-      title: "Open billing page",
-      arguments: [vscode.Uri.parse(provider.billingUrl)],
+      command: "byokDeepSeekCredits.refresh",
+      title: "Refresh balance",
     };
-    item.text = `$(sync~spin) ${provider.displayName}`;
+    item.text = `$(sync~spin) ${provider.displayName}:`;
     item.tooltip = "Loading…";
     item.show();
     this.context.subscriptions.push(item);

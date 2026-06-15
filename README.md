@@ -10,11 +10,12 @@ View your **DeepSeek API balance and usage** directly in the VS Code status bar 
 
 ## Features
 
-- **Live balance in the status bar** — shows your remaining DeepSeek credit, e.g. `☁ DeepSeek $4.82`
+- **Live balance in the status bar** — shows your remaining DeepSeek credit, e.g. `☁ DeepSeek: $4.82`
 - **Secure API key storage** — your key is stored in VS Code's encrypted `SecretStorage`, never in `settings.json`
 - **Auto-refresh** — balance refreshes automatically on a configurable interval (default: every 30 minutes)
+- **Click to refresh** — clicking the status bar item refreshes the balance immediately
+- **Billing page link** — the tooltip contains a direct link to the DeepSeek usage page
 - **Manual refresh** — run `BYOK DeepSeek Credits: Refresh Balances` any time from the Command Palette
-- **Click to open billing** — clicking the status bar item opens the DeepSeek usage page in your browser
 
 ---
 
@@ -58,9 +59,11 @@ Paste your API key when prompted. The status bar will update immediately.
 
 | Display | Meaning |
 |---|---|
-| `☁ DeepSeek $4.82` | Balance fetched successfully |
-| `🔑 DeepSeek` | API key not set yet |
-| `⚠ DeepSeek` | Fetch failed (hover for details) |
+| `☁ DeepSeek: $4.82` | Balance fetched successfully |
+| `🔑 DeepSeek:` | API key not set yet |
+| `⚠ DeepSeek:` | Fetch failed (hover for details) |
+
+Clicking the status bar item refreshes the balance. The hover tooltip includes a link to the [DeepSeek usage page](https://platform.deepseek.com/usage).
 
 ---
 
