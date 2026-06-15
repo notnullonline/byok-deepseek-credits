@@ -1,6 +1,6 @@
 # Change Log
 
-## [0.0.1] - 2026-06-14
+## [0.1.0] - 2026-06-15
 
 ### Added
 - DeepSeek API remaining balance shown in the VS Code status bar

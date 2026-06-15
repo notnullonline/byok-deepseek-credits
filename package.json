@@ -2,7 +2,7 @@
   "name": "byok-deepseek-credits",
   "displayName": "BYOK DeepSeek Credits",
   "description": "View your DeepSeek API balance and usage. Not affiliated with or endorsed by DeepSeek.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.120.0"
   },

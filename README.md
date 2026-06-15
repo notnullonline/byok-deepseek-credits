@@ -69,6 +69,6 @@ Clicking the status bar item refreshes the balance. The hover tooltip includes a
 
 ## Release Notes
 
-### 0.0.1
+### 0.1.0
 
 Initial release — DeepSeek balance in the status bar with secure key storage and auto-refresh.
